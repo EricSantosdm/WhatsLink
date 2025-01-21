@@ -23,7 +23,8 @@ Este projeto é uma aplicação simples baseada em HTML, CSS (via Bootstrap) e J
    ```bash
    git clone https://github.com/EricSantosdm/WhatsLink
    ```
-2. Abra o arquivo `index.html` no navegador.
+2. Acesse a aplicação hospedada diretamente pelo link:
+   [WhatsApp Link Generator](https://ericsantosdm.github.io/WhatsLink/)
 3. Selecione o país desejado no menu suspenso.
 4. Digite o número de telefone (com DDD).
 5. Clique no botão "Gerar Link" para criar o link do WhatsApp.
