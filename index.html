@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Link WhatsApp</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery and jQuery Mask Plugin -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <style>
+    body {
+      background-color: #e9f7ef;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      margin: 0;
+    }
+    nav {
+      background-color: #25d366;
+    }
+    footer {
+      background-color: #128c7e;
+      color: white;
+    }
+    .country-select img {
+      width: 20px;
+      margin-right: 8px;
+    }
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .form-container {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">WhatsApp Link Generator</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="form-container">
+      <h1 class="text-center text-success mb-4">Gerador de Link do WhatsApp</h1>
+      <form id="whatsappForm">
+        <div class="mb-3">
+          <label for="countryCode" class="form-label">Selecione o País</label>
+          <select class="form-select country-select" id="countryCode" required>
+            <option value="55" selected><img src="https://flagcdn.com/w40/br.png" alt="BR"> Brasil (+55)</option>
+            <option value="1"><img src="https://flagcdn.com/w40/us.png" alt="US"> Estados Unidos (+1)</option>
+            <option value="44"><img src="https://flagcdn.com/w40/gb.png" alt="GB"> Reino Unido (+44)</option>
+            <option value="91"><img src="https://flagcdn.com/w40/in.png" alt="IN"> Índia (+91)</option>
+            <option value="81"><img src="https://flagcdn.com/w40/jp.png" alt="JP"> Japão (+81)</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Número de Telefone (com DDD)</label>
+          <input type="text" class="form-control" id="phoneNumber" placeholder="(99) 99999-9999" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Gerar Link</button>
+      </form>
+      <div class="mt-4" id="generatedLink" style="display: none;">
+        <h5>Seu link:</h5>
+        <a href="#" target="_blank" id="whatsappLink" class="btn btn-outline-success">Acessar no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center py-3">
+    <p>© 2025 WhatsApp Link Generator. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Aplica a máscara no campo de telefone
+    $(document).ready(function () {
+      $('#phoneNumber').mask('(00) 00000-0000');
+
+      // Manipula o submit do formulário
+      $('#whatsappForm').on('submit', function (event) {
+        event.preventDefault();
+
+        // Obtém o código do país e o telefone
+        const countryCode = $('#countryCode').val();
+        const phoneNumber = $('#phoneNumber').val().replace(/\D/g, '');
+
+        // Gera o link do WhatsApp
+        const whatsappLink = `https://wa.me/${countryCode}${phoneNumber}`;
+
+        // Exibe o link gerado
+        $('#generatedLink').show();
+        $('#whatsappLink').attr('href', whatsappLink).text(whatsappLink);
+      });
+    });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
